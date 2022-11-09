@@ -35,18 +35,7 @@ const ItemWrapper = styled.div`
 const App = () => {
 
   // eslint-disable-next-line no-unused-vars
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      title: "Learn React",
-      completed: false,
-    },
-    {
-      id: 2,
-      title: "Learn Django",
-      completed: false,
-    },
-  ]);
+  const [todos, setTodos] = useState([]);
 
   useEffect(() => {
     getTodos();
@@ -73,7 +62,7 @@ const App = () => {
     <Container>
       <Wrapper>
         <Title>Todo List</Title>
-        <AddTodo />
+        <AddTodo addTodo={addTodo} />
         <ItemWrapper>
           <Todos todos={todos} />
         </ItemWrapper>

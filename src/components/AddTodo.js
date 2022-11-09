@@ -24,13 +24,18 @@ const StyledButton = styled.button`
     font-weight:bold;
 `;
 
-const AddTodo = () => {
-
+export default function AddTodo({ addTodo }) {
+    
     // eslint-disable-next-line no-unused-vars
-    const [title,setTitle] = useState('');
+    const [title, setTitle] = useState('');
+    const onSubmit = (e) => {
+        e.preventDefault();
+        addTodo(title);
+        setTitle('');
+    }
 
     return (
-        <form style={{ display: "flex", alignItems: "center" }}>
+        <form onSubmit={onSubmit} style={{ display: "flex", alignItems: "center", marginTop:"30px" }}>
         <StyledInput
             type="text"
             name="title"
@@ -42,5 +47,3 @@ const AddTodo = () => {
         </form>
     );
 }
-
-export default AddTodo
