@@ -1,8 +1,9 @@
+import { notification } from 'antd';
 import axios from 'axios';
 import { AddTodo, Todos } from 'components';
 import React , {useState,useEffect} from 'react'
 import styled from 'styled-components'
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 const Container = styled.div`
   background-image: linear-gradient(to top, #ffa6a1, #ff584f);
@@ -58,13 +59,37 @@ const App = () => {
         setTodos([...todos, res?.data])});
   }
 
+  const markComplete = (id) => {
+    let markCompletedTodos = todos?.map((todo) => {
+      if (todo?.id === id) {
+        todo.completed = !todo.completed;
+      }
+      return todo;
+    });
+
+    setTodos(markCompletedTodos);
+  };
+
+  const deleteTodo = (id) => { 
+    axios
+      .delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+      .then(() =>
+        notification.success({
+          description: "Todo deleted successfully",
+          placement: "top",
+          duration:3,
+        }),
+        setTodos([...todos.filter((todo) => todo?.id !== id)])
+      );
+  }
+
   return (
     <Container>
       <Wrapper>
         <Title>Todo List</Title>
         <AddTodo addTodo={addTodo} />
         <ItemWrapper>
-          <Todos todos={todos} />
+          <Todos todos={todos} markComplete={markComplete} deleteTodo={deleteTodo} />
         </ItemWrapper>
       </Wrapper>
     </Container>
