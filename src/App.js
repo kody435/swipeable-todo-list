@@ -1,5 +1,6 @@
+import axios from 'axios';
 import { AddTodo, Todos } from 'components';
-import React , {useState} from 'react'
+import React , {useState,useEffect} from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -39,6 +40,14 @@ const App = () => {
       completed: false,
     },
   ]);
+
+  useEffect(() => {
+    getTodos();
+  }, [])
+  
+  const getTodos = async () => {
+    axios.
+  }
 
   return (
     <Container>
