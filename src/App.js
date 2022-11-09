@@ -1,4 +1,4 @@
-import { AddTodo } from 'components';
+import { AddTodo, Todos } from 'components';
 import React , {useState} from 'react'
 import styled from 'styled-components'
 
@@ -26,12 +26,18 @@ const Title = styled.h1`
 
 const App = () => {
 
+  // eslint-disable-next-line no-unused-vars
   const [todos, setTodos] = useState([
     {
       id: 1,
       title: "Learn React",
       completed: false,
-    }
+    },
+    {
+      id: 2,
+      title: "Learn Django",
+      completed: false,
+    },
   ]);
 
   return (
@@ -39,6 +45,7 @@ const App = () => {
       <Wrapper>
         <Title>Todo List</Title>
         <AddTodo />
+        <Todos todos={todos} />
       </Wrapper>
     </Container>
   )

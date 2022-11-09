@@ -26,10 +26,11 @@ const StyledButton = styled.button`
 
 const AddTodo = () => {
 
+    // eslint-disable-next-line no-unused-vars
     const [title,setTitle] = useState('');
 
     return (
-      <form style={{ display: "flex", alignItems: "center" }}>
+        <form style={{ display: "flex", alignItems: "center" }}>
         <StyledInput
             type="text"
             name="title"
@@ -38,7 +39,7 @@ const AddTodo = () => {
             required
             />
             <StyledButton type="submit">Add</StyledButton>
-      </form>
+        </form>
     );
 }
 
