@@ -1,5 +1,5 @@
 import { AddTodo } from 'components';
-import React from 'react'
+import React , {useState} from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -25,6 +25,15 @@ const Title = styled.h1`
 `;
 
 const App = () => {
+
+  const [todos, setTodos] = useState([
+    {
+      id: 1,
+      title: "Learn React",
+      completed: false,
+    }
+  ]);
+
   return (
     <Container>
       <Wrapper>
