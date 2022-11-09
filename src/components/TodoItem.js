@@ -13,11 +13,6 @@ const TitleContainer = styled.div`
     cursor: pointer;
 `;
 
-const ItemWrapper = styled.div`
-    margin-top: 2rem;
-    max-height: 300px;
-`;
-
 export default function TodoItem({ todo }) {
     return (
         <TitleContainer>{todo?.title}</TitleContainer>

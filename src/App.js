@@ -2,6 +2,7 @@ import axios from 'axios';
 import { AddTodo, Todos } from 'components';
 import React , {useState,useEffect} from 'react'
 import styled from 'styled-components'
+import {v4 as uuidv4} from 'uuid';
 
 const Container = styled.div`
   background-image: linear-gradient(to top, #ffa6a1, #ff584f);
@@ -25,6 +26,12 @@ const Title = styled.h1`
   text-align: center;
 `;
 
+const ItemWrapper = styled.div`
+  margin-top: 2rem;
+  max-height: 300px;
+  overflow-y: auto;
+`;
+
 const App = () => {
 
   // eslint-disable-next-line no-unused-vars
@@ -46,7 +53,20 @@ const App = () => {
   }, [])
   
   const getTodos = async () => {
-    axios.
+    axios
+      .get("https://jsonplaceholder.typicode.com/todos?_limit=10")
+      .then((res) => setTodos(res?.data));
+  };
+
+  const addTodo = async (title) => {
+    axios
+      .post("https://jsonplaceholder.typicode.com/todos", {
+        title,
+        completed: false,
+      })
+      .then((res) => {
+        res.data.id = uuidv4();
+        setTodos([...todos, res?.data])});
   }
 
   return (
@@ -54,10 +74,12 @@ const App = () => {
       <Wrapper>
         <Title>Todo List</Title>
         <AddTodo />
-        <Todos todos={todos} />
+        <ItemWrapper>
+          <Todos todos={todos} />
+        </ItemWrapper>
       </Wrapper>
     </Container>
-  )
+  );
 }
 
 export default App
