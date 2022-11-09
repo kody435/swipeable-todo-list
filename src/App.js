@@ -1,3 +1,4 @@
+import { AddTodo } from 'components';
 import React from 'react'
 import styled from 'styled-components'
 
@@ -28,6 +29,7 @@ const App = () => {
     <Container>
       <Wrapper>
         <Title>Todo List</Title>
+        <AddTodo />
       </Wrapper>
     </Container>
   )
